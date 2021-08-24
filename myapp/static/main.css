@@ -1,0 +1,9 @@
+body{
+	width: 100%;
+	height: 500px;
+	background-image: url(wood-texture_00031.jpg);
+	background-size: cover;
+}
+
+.resizeimage img { width: 100%; }
+
