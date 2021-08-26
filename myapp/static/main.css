@@ -5,5 +5,9 @@ body{
 	background-size: cover;
 }
 
+.post_form_background {
+	background-color: white;
+}
+
 .resizeimage img { width: 100%; }
 

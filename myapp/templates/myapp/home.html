@@ -1,0 +1,98 @@
+{% extends "myapp/base.html" %}
+{% load static %}
+
+{% block main %}
+
+<br>
+<br>
+
+<div class="container">
+    <br>
+    <br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card h-100">
+                <a class="site_url" target="_blank"><img src="" class="card-img-top" alt="..." /></a>
+                <div class="card-body">
+                    <h5 class="site_title"></h5>
+                    <p>Memo</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col">
+            <div class="card h-100">
+                <a class="site_url" target="_blank"><img src="" class="card-img-top" alt="..." /></a>
+                <div class="card-body">
+                    <h5 class="site_title"></h5>
+                    <p>Memo</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+        </div>
+
+
+        {% for item in post_list %}
+        <div class="col">
+            <div class="card h-100">
+                <a><img src="{{ item.image }}" class="card-img-top"
+                        alt="..." /></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.site_url }}</h5>
+
+                    <p class="card-text">
+                        {{ item.memo }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ item.updated_at }}</small>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<br>
+<br>
+
+
+<script>    
+
+    const data = {
+        key: '1dcc9da3e2850928df3424ef3a5199cb', //ご自身のAPIキーに置き換えてください
+        q: 'https://www.linkpreview.net/docs/' //任意のURLで試してみてください
+    }
+
+    //プレビュー表示用の関数
+    const createIMG = json => {
+
+        document.querySelector('.card-img-top').src = json.image;
+        document.querySelector('.site_title').textContent = json.title;
+
+
+        document.querySelector('.site_url').href = json.url;
+
+    }
+    
+    //LinkPreviewを利用した通信処理
+    fetch('https://api.linkpreview.net', {
+        method: 'POST',
+        mode: 'cors',
+        body: JSON.stringify(data),
+    })
+        .then(data => data.json())
+        .then(json => createIMG(json));
+
+
+</script>
+{% endblock %}
