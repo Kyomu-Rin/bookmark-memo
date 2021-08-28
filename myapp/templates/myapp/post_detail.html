@@ -1,0 +1,37 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <br>
+            <br>
+
+            <div class="card">
+                <a href="{{ object.site_url }}" target="_blank"><img src="{{ object.image }}" class="card-img-top"
+                        alt="..." /></a>
+
+                <div class="card-body">
+                    <div class="card-title">
+                        <h5>{{ object.title }}</h5>
+                        <p class="card-text">
+                            {{ object.memo }}
+                        </p>
+
+                        <a href="{% url 'myapp:post_update' object.id %}" class="btn btn-primary">更新</a>
+                        <a href="{% url 'myapp:post_delete' object.id %}" class="btn btn-primary">削除</a>
+                    
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

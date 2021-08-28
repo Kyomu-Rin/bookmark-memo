@@ -25,11 +25,10 @@
 
 <body>
 
-    <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #38B6FF;">
+        <!-- Container wrapper -->
         <div class="container">
-            <!-- Brand -->
-            <!-- ロゴをクリックしたらホームに戻る　-->
+
             <a href="{% url 'myapp:home' %}" 　class="navbar-brand">
                 <img src="{% static 'logo_white.png' %}" height="54" alt="" loading="lazy"
                     style="margin-top: -1px; margin:15px;" />
@@ -46,53 +45,98 @@
                 </form>
             </div>
 
-            <!-- Right elements -->
-            <ul class="navbar-nav flex-row">
-                <div class="d-flex">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Team</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Projects</a>
-                        </li>
 
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarRightAlignExample" aria-controls="navbarRightAlignExample" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarRightAlignExample">
+                <!-- Left links -->
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
                         <a href="{% url 'myapp:post_create' %}">
                             <button type="button" class="btn btn-primary me-3" style="background: #FF914D;">
                                 <i class="fas fa-plus" style="margin-right:10px;"></i>
                                 追加する
                             </button>
                         </a>
-                    </ul>
-                </div>
-            </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'myapp:post_list' %}">一覧</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
 
-            <ul class="navbar-nav">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li>
-                            <a class="dropdown-item" href="#">Some news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Another news</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                    <!-- Navbar dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-mdb-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                data-mdb-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                                {% if request.user.is_authenticated %}
+
+                                <li>
+                                    <a class="dropdown-item" href="#">{{ request.user }}</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'myapp:logout' %}">ログアウト</a>
+                                </li>
+                                {% endif %}
+                            </ul>
                         </li>
                     </ul>
-                </li>
-            </ul>
-            <!-- Right elements -->
+
+                </ul>
+                <!-- Left links -->
+            </div>
+            <!-- Collapsible wrapper -->
         </div>
+        <!-- Container wrapper -->
     </nav>
-    <!-- Navbar -->
+
+    <main class="container">
+
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+        {% endif %}
+        
+    </main>
 
     {% block main %}
     {% endblock %}
@@ -172,6 +216,12 @@
         </footer>
         <!-- Footer -->
     </section>
+
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+    <!-- Custom scripts -->
+    <script type="text/javascript"></script>
 
 </body>
 
