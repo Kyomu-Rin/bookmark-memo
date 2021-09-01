@@ -1,0 +1,19 @@
+<div class="pagination justify-content-center">
+    <span class="step-links">
+        <h3 style="font-size: 20px;">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; </a>
+            <a href="?page={{ page_obj.previous_page_number }}">前へ</a>
+            {% endif %}
+
+            <span class="current">
+                {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">次へ</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+            {% endif %}
+        </h3>
+    </span>
+</div>

@@ -1,24 +1,38 @@
-{% extends "myapp/base.html" %}
+{% extends 'myapp/base.html' %}
 {% load static %}
 
 {% block main %}
-
 <div class="container">
     <br>
-    <h2 style="font-weight: bold;">HOME</h2>
-    <br>
+
+    <div>
+        <h2 style="font-weight: bold;">{{ object.name }}
+        </h2>
+
+        <a href="{% url 'myapp:like_add' object.id %}" class="btn" style="background-color: #38B6FF; color: white;">
+            <i class="fas fa-star"></i>
+            お気に入り
+        </a>
+
+
+        <a href="{% url 'myapp:like_delete' object.id %}" class="btn btn-danger">
+            お気に入り解除
+        </a>
+        <hr>
+    </div>
+
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
 
 
-        {% for item in post_list %}
+        {% for item in tag_posts %}
         {% if item.author == request.user %}
         <div class="col">
             <div class="card h-100">
-                <!-- <a href="{{ item.site_url }}" target="_blank"><img src="{{ item.image }}" class="card-img-top"
-                        alt="..." /></a> -->
                 <div class="card-header" style="background-color: {{ item.image_color }};">
-                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">{{ item.title|truncatechars:25 }}
+                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">
+                        {{ item.title|truncatechars:25 }}
                     </h5>
                 </div>
 
@@ -52,8 +66,8 @@
         {% endfor %}
 
     </div>
+    <br>
+    <br>
 </div>
 
-<br>
-<br>
 {% endblock %}

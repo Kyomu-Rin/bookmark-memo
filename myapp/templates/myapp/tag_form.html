@@ -1,0 +1,47 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<div class="post_form_background">
+    <div class="post_form_background" style="background-color: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                <br>
+                <h2 style="font-weight: bold;">タグの新規作成</h2>
+                <p>ここで作成したタグは全ユーザーに公開されますのでご注意ください</p>
+                <br>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">タグ名</label>
+                        {{ form.name }}
+                    </div>
+                    
+                    <br>
+                    <br>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" style="background: #FF914D; margin-bottom: 15px;">SAVE</button>
+                        <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-darg">戻る</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </div>
+</div>
+
+{% endblock %}

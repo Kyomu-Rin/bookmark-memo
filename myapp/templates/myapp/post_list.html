@@ -2,37 +2,52 @@
 {% load static %}
 
 {% block main %}
-<div class="post_form_background" style="background-color: rgba(255, 255, 255, 0.5);">
+<div class="post_form_background">
     <div class="container">
         <div class="row">
-            <div class="col-md-9">
+            <div class="col">
 
                 <br>
-                <h2>Post一覧</h2>
+                <h2 style="font-weight: bold;">BOOK MARK一覧</h2>
                 <br>
 
-                <table class="table" style="background-color: white;">
+                <table class="table table-striped" style="background-color: white;">
                     <thead>
                         <tr>
                             <th>タイトル</th>
                             <th>内容</th>
-                            <th>作成日</th>
-                            <th>更新日</th>
+                            <th>タグ</th>
+                            <th width="180px">作成日<br>更新日</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for item in post_list %}
+                        
+                        {% if item.author == request.user %}
                         <tr>
-                            <td><a href="{% url 'myapp:post_detail' item.id %}">{{ item.title }}</a></td>
-                            <td>{{ item.memo }}</td>
-                            <td>{{ item.created_at }}</td>
-                            <td>{{ item.updated_at }}</td>
+                            <td><a href="{% url 'myapp:post_detail' item.id %}">{{ item.title|truncatechars:25 }}</a>
+                            </td>
+                            <td>{{ item.memo | truncatechars:100 | linebreaksbr | urlize }}</td>
+
+                            <td>
+                                {% for tag in item.tag.all %}
+                                {{ tag.name }}
+                                {% endfor %}
+                            </td>
+
+                            <td>{{ item.created_at.date }}<br>{{ item.updated_at.date }}</td>
                         </tr>
+                        {% endif %}
                         {% endfor %}
                     </tbody>
 
                 </table>
 
+                <br>
+                <div class="text-center">
+
+                    {% include 'myapp/pagination.html' %}
+                </div>
                 <br>
 
             </div>

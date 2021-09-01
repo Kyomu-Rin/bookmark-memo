@@ -1,22 +1,21 @@
-{% extends "myapp/base.html" %}
-{% load static %}
+{% extends 'myapp/base.html' %}
 
 {% block main %}
-
 <div class="container">
+
+
     <br>
-    <h2 style="font-weight: bold;">HOME</h2>
+    <h2 style="font-weight: bold;">BOOK MARK検索結果一覧</h2>
     <br>
+
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
 
 
-        {% for item in post_list %}
-        {% if item.author == request.user %}
+        {% for item in search_list %}
         <div class="col">
+            {% if item.author == request.user %}
             <div class="card h-100">
-                <!-- <a href="{{ item.site_url }}" target="_blank"><img src="{{ item.image }}" class="card-img-top"
-                        alt="..." /></a> -->
                 <div class="card-header" style="background-color: {{ item.image_color }};">
                     <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">{{ item.title|truncatechars:25 }}
                     </h5>
@@ -47,13 +46,13 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
         </div>
-        {% endif %}
         {% endfor %}
 
     </div>
+    <br>
+    <br>
 </div>
 
-<br>
-<br>
 {% endblock %}

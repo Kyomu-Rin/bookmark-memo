@@ -3,23 +3,86 @@
 
 {% block content %}
 
+
+<p class="resizeimage" style="background-color: white;">
+    <img src="{% static 'BookMark.png' %}" alt="BookMarkの概要">
+</p>
+<div class="container">
+    <!-- Background image -->
+    <!-- Background image -->
     <br>
-    <br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
 
-    <div class="container">
-        <!-- Background image -->
-        <p class="resizeimage">
-            <img src="{% static 'BookMark.png' %}" alt="BookMarkの概要">
-        </p>
-        <!-- Background image -->
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header" style="background-color: #CBFFD3;">
+                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">当サイトについて
+                    </h5>
+                </div>
 
-        <br>
-        <br>
+                <div class="card-body">
+                    <p class="card-title">
+                        サイトのURLだけを登録していても後で見返したときに何のサイトなのか、
+                        どのような目的で登録したのか分かりにくいと感じていました。<br>
+                        その問題を解消するために当サイトではURLについてメモやタグ、色分け機能などを実装したので見やすく分かりやすくなるように工夫しました。<br>
+                        ぜひ気軽にご使用ください！
+                        <a class="nav-link" href="{% url 'myapp:signup' %}"
+                        style="margin-right: 20px;">サインアップはこちら</a>
+                    </p>
 
+                    <br>
+
+                    <div class="card-text">
+                        <h6>メモ</h6>
+                        <h6>タグ</h6>
+                        <h6>色分け</h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header" style="background-color: #C2EEFF;">
+                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">使い方
+                    </h5>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-title">
+                        ブックマークを登録する際には必ず<strong>タイトル・URL・タグ</strong>をご入力ください。（タグは選択制です）<br>
+                        メモと色分け機能に関しては任意となっております。<br>
+                        <br>
+                        また、タグ機能に関しては実装の関係上、<strong style="color: rgb(202, 46, 46);">サイト全体で共通</strong>となっているため新規追加する場合はご注意ください。<br>
+                        不具合やご意見・ご要望などありましたらお問い合わせページよりお願いいたします。
+                    </p>
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card h-100">
+                <div class="card-header" style="background-color: #FFC7AF;">
+                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">プライバシーポリシー
+                    </h5>
+                </div>
+
+                <div class="card-body">
+                    <p class="card-title">
+                        当サイトでは、お問い合わせやサインアップの際、名前やメールアドレス等の個人情報を入力いただく場合がございます。
+                        取得した個人情報は、お問い合わせに対する回答や必要な情報を電子メールなどでご連絡する場合に利用させていただくものであり、これらの目的以外では利用いたしません。
+                    </p>
+
+                    <br>
+                </div>
+            </div>
+        </div>
     </div>
-    </div>
+</div>
 
-    <br>
-    <br>
-    
+<br>
+<br>
+
 {% endblock %}

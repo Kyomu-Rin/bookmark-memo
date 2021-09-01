@@ -1,0 +1,42 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container">
+
+    <br>
+    <h2 style="font-weight: bold;">タグ一覧</h2>
+    {% include 'myapp/pagination.html' %}
+    <br>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        {% for item in tag_list %}
+        
+        <div class="col">
+
+            <div class="card h-100">
+                <h4 class="card-header" style="padding: 1rem; font-weight: bold; font-size: 24px;">
+                    <a href="{% url 'myapp:tag_detail' item.id %}" style="color: #38B6FF;">{{ item.name }}</a>
+                </h4>
+
+                <div class="card-body">
+
+                    <a href="{% url 'myapp:tag_detail' item.id %}" class="link-check-tag">このタグが付いているものをすべて見る</a>
+                </div>
+
+                <div class="card-footer text-center">
+                    ★：{{ item.good }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        
+        <br>
+        <br>
+    </div>
+</div>
+
+<br>
+<br>
+{% endblock %}

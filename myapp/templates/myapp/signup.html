@@ -5,10 +5,10 @@
 <div class="post_form_background" style="background-color: rgba(255, 255, 255, 0.5);">
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" style="margin-left: auto; margin-right: auto;">
 
                 <br>
-                <h2>SignUp</h2>
+                <h2 style="font-weight: bold;">SignUp</h2>
                 <br>
 
                 <form action="" method="post">
@@ -24,7 +24,13 @@
                     {% endfor %}
                     <br>
 
-                    <button type="submit" class="btn btn-primary">SignUp</button>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary"
+                            style="background: #FF914D; border-radius: 100vh; margin-bottom: 10px;">Sing Up</button>
+
+                        <a href="{% url 'myapp:signup' %}" type="button"
+                            class="btn btn-link" style="border-radius: 100vh;">LOGIN</a>
+                    </div> 
 
                 </form>
                 <br>

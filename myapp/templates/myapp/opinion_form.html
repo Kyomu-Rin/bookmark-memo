@@ -1,0 +1,54 @@
+{% extends 'myapp/base.html' %}
+
+{% load static %}
+
+{% block main %}
+<div class="post_form_background" style="background-color: rgba(255, 255, 255, 0.5);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                <br>
+                <h2 style="font-weight: bold;">お問い合わせページ</h2>
+                <br>
+
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">お名前</label>
+                        {{ form.name }}
+                    </div>
+
+
+                    <br>
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">メールアドレス</label>
+                        {{ form.mail }}
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">お問い合わせ内容</label>
+                        {{ form.context }}
+                    </div>
+
+                    <br>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" style="background: #FF914D;">SAVE</button>
+                        <br>
+                        <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-darg">戻る</a>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <br>
+        <br>
+    </div>
+</div>
+
+{% endblock %}

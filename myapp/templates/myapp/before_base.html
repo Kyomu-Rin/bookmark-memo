@@ -2,12 +2,20 @@
 <!-- index.html は最初に来る画面。ログインしないと主要機能は使えない　-->
 
 <!DOCTYPE html>
-<html lang="ja">
-
+<html lang="ja" prefix="og: http://ogp.me/ns#">
+    
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+    <meta property="og:title" content="BookMark ブックマーク管理サイト">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="自由にブックマークを整理しよう！タグ・メモ・色分け機能付き">
+    <meta property="og:url" content="ページのURL">
+    <meta property="og:site_name" content="BookMark ブックマーク管理サイト">
+    <meta property="og:image" content="{% static 'BookMarkImage.png' %}">
+
     <title>BookMark</title>
     <link rel="stylesheet" href="{% static 'main.css' %}">
 
@@ -24,7 +32,10 @@
 
 </head>
 
-<body>
+<body style="margin: 0;
+display: flex;
+flex-flow: column;
+min-height: 100vh;">
 
     <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #38B6FF;">
@@ -45,17 +56,13 @@
                 <div class="d-flex align-items-center">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'myapp:login' %}">Login</a>
+                            <a class="nav-link text-white" href="{% url 'myapp:login' %}"
+                                style="margin-right: 20px;">ログイン</a>
                         </li>
 
                         <a href="{% url 'myapp:signup' %}">
-                            <button type="button" class="btn btn-primary me-3" style="background: #FF914D;">
+                            <button type="button" class="btn btn-primary me-3"
+                                style="background: #FF914D; font-weight: bold;">
                                 アカウント作成
                             </button>
                         </a>
@@ -65,86 +72,54 @@
     </nav>
     <!-- Navbar -->
 
-    
-    {% block content %}
-    {% endblock %}
+    <main style="flex: 1;">
 
-    
+        {% if messages %}
+        <br>
+        {% for message in messages %}
+
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+
+        {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </main>
+
     <section class="">
-        <!-- Footer -->
-        <footer class="text-white" style="background-color: #38B6FF;">
+
+        <footer class="text-center text-white" style="background-color: #38B6FF;">
             <!-- Grid container -->
-            <div class="container p-4">
-                <!--Grid row-->
-                <div class="row">
-                    <!--Grid column-->
-                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Footer Content</h5>
+            <div class="container p-4 pb-0">
+                <!-- Section: CTA -->
+                <section class="">
+                    <div class="d-flex justify-content-center align-items-center">
 
                         <p>
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
-                            molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
-                            aliquam voluptatem veniam, est atque cumque eum delectus sint!
+                            <a href="{% url 'myapp:contact' %}">
+                                <button type="button" class="btn btn-outline-light btn-rounded">
+                                    <i class="far fa-envelope" style="font-size: 16px;"></i>
+                                    <span style="font-size: 16px;">お問い合わせ</span>
+                                </button>
+                            </a>
                         </p>
                     </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">Links</h5>
-
-                        <ul class="list-unstyled mb-0">
-                            <li>
-                                <a href="#!" class="text-white">Link 1</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 2</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 3</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--Grid column-->
-
-                    <!--Grid column-->
-                    <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                        <h5 class="text-uppercase mb-0">Links</h5>
-
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="#!" class="text-white">Link 1</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 2</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 3</a>
-                            </li>
-                            <li>
-                                <a href="#!" class="text-white">Link 4</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--Grid column-->
-                </div>
-                <!--Grid row-->
+                </section>
+                <!-- Section: CTA -->
             </div>
             <!-- Grid container -->
 
             <!-- Copyright -->
             <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-                © 2020 Copyright:
-                <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
             </div>
             <!-- Copyright -->
         </footer>
         <!-- Footer -->
     </section>
-    
+
 
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>

@@ -9,14 +9,16 @@
             <div class="col-md-9">
 
                 <br>
-                <h2>Post削除</h2>
+                <h2 style="font-weight: bold;">Post削除</h2>
                 <br>
 
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger" role="alert" style="margin-bottom: 30px;">
                     <form method="post">
                         {% csrf_token %}
 
                         <p>以下の内容を本当に削除しますか?</p>
+                        <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-darg"
+                            style="margin-right: 20px;">戻る</a>
                         <input type="submit" class="btn btn-danger" value="削除する">
 
 
@@ -25,17 +27,37 @@
                 </div>
 
                 <div class="card">
-                    <div class="card-body">
-                      <h5 class="card-title">{{ object.title }}</h5>
-                      <hr>
-
-                      <h6 class="card-subtitle mb-2 text-muted">{{ object.memo }}</h6>
-                      <a href="{{ object.site_url }}" class="card-link">{{ object.site_url }}</a>
+                    <div class="card-header" style="background-color: {{ object.image_color }};">
+                        <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">
+                            {{ object.title|truncatechars:25}}
+                        </h5>
                     </div>
-                  </div>
 
+                    <div class="card-body">
+                        <p class="card-title">
+                            {{ object.memo | linebreaksbr | urlize }}
+                        </p>
+
+                        <br>
+
+                        <div class="card-text" style="margin-bottom: 20px;">
+
+                            <a href="{{ object.site_url }}" target="_blank">
+                                URLはこちら
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="card-footer" style="padding-top: 20px;">
+                        {% for tag in object.tag.all %}
+                        <h6>{{ tag.name }}</h6>
+                        {% endfor %}
+                    </div>
+                </div>
                 <br>
                 <br>
+
 
             </div>
         </div>

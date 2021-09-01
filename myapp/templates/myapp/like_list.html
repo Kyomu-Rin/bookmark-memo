@@ -1,0 +1,40 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+
+{% block main %}
+<div class="post_form_background">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+
+                <br>
+                <h2 style="font-weight: bold;">自分のお気に入りタグ一覧</h2>
+                <br>
+
+                <table class="table table-striped" style="background-color: white;">
+                    <thead>
+                        <tr>
+                            <th>タグ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in like_list %}
+
+                        {% if item.user == request.user %}
+                        <tr>
+                            <td><a href="{% url 'myapp:tag_detail' item.tag.id %}">{{ item.tag }}</a></td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+                {% include 'myapp/pagination.html' %}
+                <br>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

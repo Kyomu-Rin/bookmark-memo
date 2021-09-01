@@ -9,64 +9,67 @@
             <div class="col-md-9">
 
                 <br>
-                <h2 style="font-weight: bold;">Post登録・更新</h2>
+                <h2 style="font-weight: bold;">BOOK MARK登録・更新</h2>
                 <br>
 
                 <form action="" method="post">
                     {% csrf_token %}
 
                     <div class="form-group">
-                        <label style="font-size: large;">URL</label>
-                        {{ form.site_url }}
+                        <label style="font-size: 20px; font-weight: bold;">タイトル</label>
+                        {{ form.title }}
                     </div>
 
 
                     <br>
 
                     <div class="form-group">
-                        <label>メモ</label>
+                        <label style="font-size: 20px; font-weight: bold;">URL</label>
+                        {{ form.site_url }}
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label><span style="font-size: 20px; font-weight: bold;">色</span> (選択してください）
+                        </label>
+                        {{ form.image_color }}
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">タグ</label>
+                        {{ form.tag }}
+                        <p>複数選択するときには Control キーを押したまま選択してください。Mac は Command キーを使ってください</p>
+                        <a href="{% url 'myapp:tag_create' %}">
+                            <button type="button" class="btn btn-primary"
+                                style="background: #38B6FF; border-radius: 100vh; margin-bottom: 10px;">タグを新規追加</button>
+                        </a>
+                    </div>
+                    <br>
+
+
+                    <div class="form-group">
+                        <label style="font-size: 20px; font-weight: bold;">メモ</label>
                         {{ form.memo }}
                     </div>
 
                     <br>
 
-                    <div class="form-group">
-                        <label>タグ</label>
-                        {{ form.tag }}
+
+                    <br>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary" style="background: #FF914D;">SAVE</button>
+                        <br>
+                        <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-darg">戻る</a>
                     </div>
-
-                    <br>
-                    
-
-                    <div class="form-group">
-                        <label>author</label>
-                        {{ form.author }}
-                    </div>
-
-                    <br>
-                    
-
-                    <div class="form-group">
-                        <label>URL-title</label>
-                        {{ form.title }}
-                    </div>
-                    
-                    <br>
-                    
-
-                    <div class="form-group">
-                        <label>URL-image</label>
-                        {{ form.image }}
-                    </div>
-                    
-                    <br>
-                    <br>
-
-                    <button type="submit" class="btn btn-primary" style="background: #FF914D;">SAVE</button>
 
                 </form>
             </div>
         </div>
+        <br>
         <br>
     </div>
 </div>

@@ -10,26 +10,39 @@
             <br>
 
             <div class="card">
-                <a href="{{ object.site_url }}" target="_blank"><img src="{{ object.image }}" class="card-img-top"
-                        alt="..." /></a>
+                <div class="card-header" style="background-color: {{ object.image_color }};">
+                    <h5 style="padding: 1rem; font-weight: bold; font-size: 24px;">{{ object.title|truncatechars:25}}
+                    </h5>
+                </div>
 
                 <div class="card-body">
-                    <div class="card-title">
-                        <h5>{{ object.title }}</h5>
-                        <p class="card-text">
-                            {{ object.memo }}
-                        </p>
+                    <p class="card-title">
+                        {{ object.memo | linebreaksbr | urlize }}
+                    </p>
 
-                        <a href="{% url 'myapp:post_update' object.id %}" class="btn btn-primary">更新</a>
-                        <a href="{% url 'myapp:post_delete' object.id %}" class="btn btn-primary">削除</a>
-                    
+                    <br>
+
+                    <div class="card-text" style="margin-bottom: 20px;">
+                        
+                    <a href="{{ object.site_url }}" target="_blank">
+                        URLはこちら
+                    </a>
                     </div>
+                    <a href="javascript:void(0);" onclick="window.history.back();" class="btn btn-outline-darg" style="margin-right: 20px;">戻る</a>
+                    <a href="{% url 'myapp:post_update' object.id %}" class="btn btn-primary" style="background-color: #38B6FF; margin-right: 20px;">更新</a>
+                    <a href="{% url 'myapp:post_delete' object.id %}" class="btn btn-danger">削除</a>
+                </div>
+
+
+                <div class="card-footer" style="padding-top: 20px;">
+                    {% for tag in object.tag.all %}
+                    <h6>{{ tag.name }}</h6>
+                    {% endfor %}
                 </div>
             </div>
 
             <br>
             <br>
-
         </div>
     </div>
 </div>
