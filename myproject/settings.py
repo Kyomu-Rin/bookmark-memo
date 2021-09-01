@@ -137,7 +137,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FOWARDED_PROTO', 'https')
 
 ALLOWED_HOSTS = ['*']
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'myapp/static'),)
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
