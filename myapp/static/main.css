@@ -73,3 +73,9 @@ h6 {
     color:#fff;
     line-height: 50px;
 }
+
+.box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+  }
