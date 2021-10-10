@@ -22,24 +22,25 @@
                     </h5>
                 </div>
 
-                <div class="card-body">
+                <div class="card-body box">
                     <p class="card-title">
                         {{ item.memo | truncatechars:100 | linebreaksbr | urlize }}
                     </p>
 
-                    <br>
-
                     <div class="card-text">
+
                         {% for tag in item.tag.all %}
                         <h6>{{ tag.name }}</h6>
                         {% endfor %}
-                    </div>
-                    <div class="text-center" style="margin-top: 10px;">
-                        <a href="{% url 'myapp:post_detail' item.id %}" type="button"
-                            class="btn btn-light-blue btn-md">もっと読む</a>
-                    </div>
-                </div>
 
+
+                        <div class="text-center" style="margin-top: 10px;">
+                            <a href="{% url 'myapp:post_detail' item.id %}" type="button"
+                                class="btn btn-light-blue btn-md">もっと読む</a>
+                        </div>
+                    </div>
+
+                </div>
 
                 <div class="card-footer text-center">
                     <a href="{{ item.site_url }}" target="_blank">
