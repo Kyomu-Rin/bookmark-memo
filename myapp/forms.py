@@ -1,7 +1,7 @@
-from django import forms
-from .models import Post, Tag, Contact, Opinion
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+from django                      import forms
+from .models                     import Post, Tag, Contact, Opinion
+from django.contrib.auth.forms   import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models  import User
 
 
 # 新規追加するときに使う

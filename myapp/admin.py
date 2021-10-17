@@ -1,5 +1,5 @@
-from django.contrib import admin
-from .models import Post, Tag, Like, Contact, Opinion
+from django.contrib  import admin
+from .models         import Post, Tag, Like, Contact, Opinion
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
