@@ -1,16 +1,16 @@
-from django.shortcuts import render, resolve_url, redirect
-from django.views.generic import TemplateView, CreateView, DetailView, ListView, UpdateView, DeleteView
-from .models import Post, Tag, Like, Contact, Opinion
-from .forms import PostForm, LoginForm, SignUpForm, TagForm, SearchForm, ContactForm, OpinionForm
-from django.urls import reverse_lazy
-from django.contrib import messages
-from django.contrib.auth.views import LoginView, LogoutView
-from django.http import HttpResponseRedirect
-from django.contrib.auth import login
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib.auth.decorators import login_required
-from django.core.paginator import Paginator
-from django.db.models import Q
+from django.shortcuts                import render, resolve_url, redirect
+from django.views.generic            import TemplateView, CreateView, DetailView, ListView, UpdateView, DeleteView
+from .models                         import Post, Tag, Like, Contact, Opinion
+from .forms                          import PostForm, LoginForm, SignUpForm, TagForm, SearchForm, ContactForm, OpinionForm
+from django.urls                     import reverse_lazy
+from django.contrib                  import messages
+from django.contrib.auth.views       import LoginView, LogoutView
+from django.http                     import HttpResponseRedirect
+from django.contrib.auth             import login
+from django.contrib.auth.mixins      import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators  import login_required
+from django.core.paginator           import Paginator
+from django.db.models                import Q
 import requests
 import logging
 

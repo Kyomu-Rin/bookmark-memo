@@ -1,5 +1,5 @@
-from django.db import models
-from django.contrib.auth.models import User
+from django.db                   import models
+from django.contrib.auth.models  import User
 
 
 class Tag(models.Model):
@@ -88,8 +88,8 @@ class Post(models.Model):
 
 
 class Like(models.Model):
-    tag = models.ForeignKey(Tag, verbose_name="タグ", on_delete=models.PROTECT)
-    user = models.ForeignKey(User, verbose_name="Likeしたユーザー", on_delete=models.PROTECT)
+    tag = models.ForeignKey(Tag,     verbose_name="タグ",            on_delete=models.PROTECT)
+    user = models.ForeignKey(User,   verbose_name="Likeしたユーザー", on_delete=models.PROTECT)
 
 
 class Contact(models.Model):
