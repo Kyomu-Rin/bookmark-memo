@@ -189,7 +189,21 @@ def Search(request):
 
         if searchform.is_valid():
             freeword = searchform.cleaned_data['freeword']
-            search_list = Post.objects.filter(Q(title__icontains = freeword) |Q(memo__icontains = freeword))
+
+            # 複数のワードの検索に対応
+            if freeword:
+                if " " in freeword or "　" in freeword:
+                    freeword = freeword.split()
+                    for word in freeword:
+                        search_list = Post.objects.filter(
+                            Q(title__icontains = word) |
+                            Q(memo__icontains  = word)
+                        )
+                else:
+                    search_list = Post.objects.filter(
+                            Q(title__icontains = freeword) |
+                            Q(memo__icontains  = freeword)
+                        )
 
         params = {
             'search_list': search_list,
